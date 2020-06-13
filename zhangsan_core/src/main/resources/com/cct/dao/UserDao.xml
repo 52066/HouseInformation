@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cct.dao.UserDao">
+
+
+
+    <update id="update" parameterType="user"></update>
+
+    <select id="login" parameterType="user" resultType="user">
+        select * from user where userIdentity=#{userIdentity}
+    </select>
+
+
+    <insert id="registe" parameterType="user" >
+        insert into user(userName,userIdentity,userPassword)
+            values (#{userName},#{userIdentity},#{userPassword})
+    </insert>
+
+    <select id="selectByUserIdentity" parameterType="String" resultType="user">
+        select * from user where userIdentity=#{userIdentity}
+    </select>
+
+    <select id="selectByName" parameterType="String" resultType="user">
+        select * from user where userName=#{name}
+    </select>
+</mapper>
+
+
+
+
+
+
+

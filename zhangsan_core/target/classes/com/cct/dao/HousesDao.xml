@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cct.dao.HousesDao">
+    <insert id="insertHouse" parameterType="houses">
+
+        insert into houses(houseProjec,possessor,identity,housesTypes,area,housesTime)
+        values (#{houseProjec},#{possessor},#{identity},#{housesTypes},#{area},#{housesTime})
+    </insert>
+
+    <delete id="deleteHouse" parameterType="int">
+        delete from houses where id=#{id}
+    </delete>
+
+    <update id="updateHouse" parameterType="houses">
+        update houses set houseProjec=#{houseProjec}, possessor=#{possessor},identity=#{identity},
+          housesTypes=#{housesTypes} , area=#{area} , housesTime=#{housesTime} where id=#{id}
+    </update>
+
+    <select id="selectHouses" resultType="houses" resultSets="java.util.List">
+        select * from houses limit #{start},#{limit}
+    </select>
+
+    <select id="getCountHouses" resultType="int">
+        select count(*) from houses
+    </select>
+
+    <select id="selectByHouseProjec"  resultType="houses">
+        select * from houses  where houseProjec=#{content} limit #{start},#{limit}
+    </select>
+
+    <select id="selectByPossessor" resultType="houses">
+        select * from houses where possessor=#{content} limit #{start},#{limit}
+    </select>
+
+    <select id="selectByArea" resultType="houses">
+        select * from houses where area=#{content} limit #{start},#{limit}
+    </select>
+
+    <select id="getCountByHouseProjec" parameterType="String" resultType="int">
+        select count(*) from houses  where houseProjec=#{houseProjec}
+    </select>
+
+    <select id="getCountByPossessor" parameterType="String" resultType="int">
+        select count(*) from houses where possessor=#{possessor}
+    </select>
+
+    <select id="getCountByArea" parameterType="String" resultType="int">
+        select count(*) from houses where area=#{area}
+    </select>
+</mapper>
